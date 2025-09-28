@@ -18,11 +18,11 @@ export function Hero() {
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl text-balance text-white leading-tight drop-shadow-2xl font-serif mt-0 mb-1.5 px-0 py-1 md:text-4xl">
+          <h1 className="text-5xl text-balance text-white leading-tight drop-shadow-2xl font-serif mt-0 mb-1.5 px-0 py-1 md:text-6xl">
             Maksimalkan kecantikan alami Anda dengan perawatan khusus wanita 
           </h1>
 
-          <p className="text-xl text-gray-200 text-balance mb-12 leading-relaxed drop-shadow-lg md:text-xl">
+          <p className="text-xl text-gray-200 text-balance mb-12 leading-relaxed drop-shadow-lg md:text-lg">
             {
               "Rasakan perawatan kecantikan di tempat kami yang tenang, di mana kami akan memaksimalkan pancaran kecantikan anda."
             }
