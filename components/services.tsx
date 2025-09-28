@@ -204,8 +204,8 @@ export function Services() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02)_0%,transparent_50%)] pointer-events-none"></div>
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif text-balance mb-6 text-foreground">Layanan Kami</h2>
-          <p className="text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
+          <h2 className="text-4xl font-serif text-balance mb-6 text-foreground md:text-4xl">Layanan Kami</h2>
+          <p className="text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed text-lg">
             {
               "Temukan berbagai layanan kecantikan dan kesehatan terlengkap dengan harga terjangkau di Sekar Kedaton Beauty Salon."
             }
