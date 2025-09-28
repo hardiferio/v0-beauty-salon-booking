@@ -12,7 +12,7 @@ export function Gallery() {
     <section id="gallery" className="py-20 px-4 bg-secondary/20">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif text-balance mb-6 text-foreground">
+          <h2 className="text-4xl font-serif text-balance mb-6 text-foreground md:text-4xl">
             Kecantikan di Setiap Detail pada diri Anda
           </h2>
           <p className="text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
@@ -29,7 +29,7 @@ export function Gallery() {
               <img
                 src={image || "/placeholder.svg"}
                 alt={`Gambar galeri ${index + 1}`}
-                className="h-full object-cover hover:scale-105 transition-transform duration-300 px-0 rounded-md w-full"
+                className="object-cover hover:scale-105 transition-transform duration-300 px-0 rounded-md w-full h-full"
               />
             </div>
           ))}

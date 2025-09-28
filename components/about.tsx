@@ -4,7 +4,7 @@ export function About() {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-serif text-balance mb-8 text-foreground">
+            <h2 className="text-4xl font-serif text-balance mb-8 text-foreground md:text-4xl">
               Didedikasikan untuk perjalanan kecantikan Anda
             </h2>
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
