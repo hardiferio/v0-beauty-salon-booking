@@ -15,7 +15,7 @@ export function Gallery() {
           <h2 className="text-4xl font-serif text-balance mb-6 text-foreground md:text-4xl">
             Kecantikan di Setiap Detail pada diri Anda
           </h2>
-          <p className="text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed text-lg">
             {"Jelajahi galeri kami yang menampilkan seni dan transformasi dari tahap kecantikan anda."}
           </p>
         </div>

@@ -14,8 +14,8 @@ export function Booking() {
     <section id="contact" className="py-20 px-4">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif text-balance mb-6 text-foreground">Buat Janji Anda</h2>
-          <p className="text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
+          <h2 className="text-4xl font-serif text-balance mb-6 text-foreground md:text-4xl">Buat Janji Anda</h2>
+          <p className="text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed text-lg">
             {
               "Siap merasakan perawatan kecantikan mewah? Hubungi kami melalui WhatsApp untuk pemesanan instan dan layanan yang dipersonalisasi."
             }
