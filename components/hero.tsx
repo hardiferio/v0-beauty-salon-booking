@@ -18,7 +18,7 @@ export function Hero() {
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl text-balance text-white leading-tight drop-shadow-2xl font-serif mt-0 mb-1.5 px-0 py-1 md:text-6xl">
+          <h1 className="text-5xl text-balance leading-tight drop-shadow-2xl font-serif px-0 py-1 md:text-4xl text-chart-3 mb-1.5 mt-0">
             Maksimalkan kecantikan alami Anda dengan perawatan khusus wanita 
           </h1>
 
