@@ -14,7 +14,7 @@ export function Hero() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="absolute inset-0 bg-black/40"></div>
+      <div className="absolute inset-0 bg-black/40 my-0"></div>
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-4xl mx-auto text-center">
