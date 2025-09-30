@@ -51,8 +51,8 @@ export function Booking() {
                 <Clock className="w-8 h-8 text-primary flex-shrink-0" />
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Jam Buka</h4>
-                  <p className="text-muted-foreground">Senin-Jumat: 09:00 - 19:00</p>
-                  <p className="text-muted-foreground">Sabtu-Minggu: 10:00 - 18:00</p>
+                  <p className="text-muted-foreground">Senin-Jumat: 10:00 - 17:00</p>
+                  <p className="text-muted-foreground">Sabtu-Minggu: 10:00 - 17:00</p>
                 </div>
               </CardContent>
             </Card>

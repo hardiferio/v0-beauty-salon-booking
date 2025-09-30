@@ -17,12 +17,6 @@ const services = [
     image: "/serene-spa-massage-therapy.jpg",
   },
   {
-    title: "Bekam",
-    description: "Terapi bekam tradisional untuk manfaat kesehatan dan kebugaran.",
-    price: "Rp 175.000",
-    image: "/serene-spa-massage-therapy.jpg",
-  },
-  {
     title: "Lulur Badan",
     description: "Perawatan lulur tradisional Indonesia untuk kulit halus dan bercahaya.",
     price: "Rp 100.000",
