@@ -26,7 +26,7 @@ const services = [
     title: "Facial Reguler",
     description: "Perawatan wajah dasar untuk kulit bersih dan segar.",
     price: "Rp 150.000",
-    image: "/luxury-facial-skincare-treatment.jpg",
+    image: "/facial reguler.jpg",
   },
   {
     title: "Facial Detox",
