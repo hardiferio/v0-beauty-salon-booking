@@ -145,7 +145,7 @@ const services = [
   {
     title: "Make Up Lamaran",
     description: "Riasan pertunangan profesional untuk momen spesial Anda.",
-    price: "Mulai dari Rp 250.000",
+    price: "Mulai dari Rp 500.000",
     image: "/bridal-makeup-and-hair-styling.jpg",
   },
   {
