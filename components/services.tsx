@@ -143,6 +143,12 @@ const services = [
     image: "/elegant-hair-salon-styling.jpg",
   },
   {
+    title: "Nano Hair Keratin",
+    description: "Merawat dan mengembalikan rambut yang rusak akibat pewarnaan dan proses kimiawi.",
+    price: "Mulai dari Rp 150.000",
+    image: "/elegant-hair-salon-styling.jpg",
+  },
+  {
     title: "Make Up Lamaran",
     description: "Riasan pertunangan profesional untuk momen spesial Anda.",
     price: "Mulai dari Rp 250.000",
