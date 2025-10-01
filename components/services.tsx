@@ -32,7 +32,7 @@ const services = [
     title: "Facial Detox",
     description: "Pembersihan wajah secara mendalam untuk menghilangkan kotoran dan racun.",
     price: "Rp 200.000",
-    image: "/luxury-facial-skincare-treatment.jpg",
+    image: "/facial detox.jpg",
   },
   {
     title: "Facial Hydra",
