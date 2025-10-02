@@ -38,7 +38,7 @@ const services = [
     title: "Facial Hydra",
     description: "Perawatan wajah hidrasi intensif untuk kulit kering dan dehidrasi.",
     price: "Rp 200.000",
-    image: "/luxury-facial-skincare-treatment.jpg",
+    image: "/facial hydra.jpg",
   },
   {
     title: "Facial Microdermabrasi",
