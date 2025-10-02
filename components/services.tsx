@@ -143,9 +143,9 @@ const services = [
     image: "/elegant-hair-salon-styling.jpg",
   },
   {
-    title: "Nano Hair Keratin",
-    description: "Merawat dan mengembalikan rambut yang rusak akibat pewarnaan dan proses kimiawi.",
-    price: "Mulai dari Rp 150.000",
+    title: "Perawatan Kutu Rambut",
+    description: " Menghilangkan Kutu Rambut.",
+    price: "Mulai dari Rp 100.000",
     image: "/elegant-hair-salon-styling.jpg",
   },
   {
