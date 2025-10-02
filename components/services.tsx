@@ -7,7 +7,7 @@ const services = [
   {
     title: "Body Massage",
     description: "Pijat seluruh tubuh yang menenangkan untuk menghilangkan ketegangan dan meningkatkan kesehatan.",
-    price: "Rp 80.000",
+    price: "Rp 100.000",
     image: "/serene-spa-massage-therapy.jpg",
   },
   {
@@ -133,6 +133,12 @@ const services = [
   {
     title: "Colouring / Toning",
     description: "Layanan pewarnaan dan pengencangan rambut profesional.",
+    price: "Mulai dari Rp 150.000",
+    image: "/elegant-hair-salon-styling.jpg",
+  },
+  {
+    title: "Nano Hair Keratin",
+    description: "Merawat dan mengembalikan rambut yang rusak akibat pewarnaan dan proses kimiawi.",
     price: "Mulai dari Rp 150.000",
     image: "/elegant-hair-salon-styling.jpg",
   },
