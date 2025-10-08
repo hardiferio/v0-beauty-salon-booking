@@ -50,7 +50,7 @@ const services = [
     title: "Setrika Wajah (RF)",
     description: "Perawatan frekuensi radio untuk mengencangkan kulit dan anti-penuaan.",
     price: "Rp 200.000",
-    image: "/luxury-facial-skincare-treatment.jpg",
+    image: "/setrika wajah.jpg",
   },
   {
     title: "Facial HF",
