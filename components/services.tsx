@@ -14,7 +14,7 @@ const services = [
     title: "Totok Punggung",
     description: "Terapi pijat punggung tradisional untuk melegakan dan merelaksasi otot.",
     price: "Rp 50.000",
-    image: "/totok punggung.jpg",
+    image: "/totok-punggung.jpg",
   },
   {
     title: "Lulur Badan",
