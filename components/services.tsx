@@ -44,7 +44,7 @@ const services = [
     title: "Facial Microdermabrasi",
     description: "Perawatan pengelupasan lanjutan untuk kulit lebih halus dan tampak lebih muda.",
     price: "Rp 200.000",
-    image: "/luxury-facial-skincare-treatment.jpg",
+    image: "/facial microdermabrasi.jpg",
   },
   {
     title: "Setrika Wajah (RF)",
