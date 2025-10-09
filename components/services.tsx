@@ -74,7 +74,7 @@ const services = [
     title: "Totok Wajah",
     description: "Pijat wajah tradisional untuk meningkatkan sirkulasi dan relaksasi.",
     price: "Rp 50.000",
-    image: "/luxury-facial-skincare-treatment.jpg",
+    image: "/totok wajah.jpg",
   },
   {
     title: "Potong Rambut",
