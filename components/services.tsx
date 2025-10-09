@@ -92,7 +92,7 @@ const services = [
     title: "Cuci Catok",
     description: "Layanan cuci dan pelurusan rambut untuk rambut halus dan lembut.",
     price: "Mulai dari Rp 50.000",
-    image: "/elegant-hair-salon-styling.jpg",
+    image: "/cuci catok.webp",
   },
   {
     title: "Cuci Blow",
