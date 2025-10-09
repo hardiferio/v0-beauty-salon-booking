@@ -56,7 +56,7 @@ const services = [
     title: "Facial HF",
     description: "Perawatan wajah frekuensi tinggi untuk jerawat dan peremajaan kulit.",
     price: "Rp 200.000",
-    image: "/luxury-facial-skincare-treatment.jpg",
+    image: "/facial hf.jpg",
   },
   {
     title: "IPL Treatment",
