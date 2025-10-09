@@ -62,7 +62,7 @@ const services = [
     title: "IPL Treatment",
     description: "Terapi cahaya berdenyut intens untuk peremajaan kulit dan penghilangan bulu.",
     price: "Rp 200.000",
-    image: "/ipl.jpg",
+    image: "/IPL.jpg",
   },
   {
     title: "Terapi Omega Light (PDT)",
