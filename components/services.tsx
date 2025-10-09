@@ -20,7 +20,6 @@ const services = [
     title: "Lulur Badan",
     description: "Perawatan lulur tradisional Indonesia untuk kulit halus dan bercahaya.",
     price: "Rp 100.000",
-    
   },
   {
     title: "Facial Reguler",
