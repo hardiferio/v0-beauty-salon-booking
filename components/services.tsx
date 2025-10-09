@@ -80,7 +80,7 @@ const services = [
     title: "Potong Rambut",
     description: "Layanan potong rambut profesional untuk semua jenis rambut.",
     price: "Rp 20.000",
-    image: "/elegant-hair-salon-styling.jpg",
+    image: "/potong rambut.jpg",
   },
   {
     title: "Keramas",
