@@ -86,7 +86,7 @@ const services = [
     title: "Keramas",
     description: "Layanan cuci rambut dengan sampo dan kondisioner premium.",
     price: "Rp 15.000",
-    image: "/elegant-hair-salon-styling.jpg",
+    image: "/keramas.jpg",
   },
   {
     title: "Cuci Catok",
