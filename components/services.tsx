@@ -116,7 +116,7 @@ const services = [
     title: "Creambath",
     description: "Perawatan rambut deep conditioning untuk rambut sehat dan ternutrisi.",
     price: "Rp 75.000",
-    image: "/crembath.jpg",
+    image: "/crembath.jpeg",
   },
   {
     title: "Hair Mask",
