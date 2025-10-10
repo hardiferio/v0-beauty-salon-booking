@@ -14,8 +14,8 @@ export function Booking() {
     <section id="contact" className="py-20 px-4">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif text-balance mb-6 text-foreground md:text-4xl">Buat Janji Anda</h2>
-          <p className="text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed text-lg">
+          <h2 className="text-4xl text-balance mb-6 text-foreground font-mono md:text-3xl">Buat Janji Anda</h2>
+          <p className="text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed text-base">
             {
               "Siap merasakan perawatan kecantikan mewah? Hubungi kami melalui WhatsApp untuk pemesanan instan dan layanan yang dipersonalisasi."
             }
@@ -27,8 +27,8 @@ export function Booking() {
             <CardContent className="space-y-8">
               <div className="text-center">
                 <MessageCircle className="w-16 h-16 text-primary mx-auto mb-4" />
-                <h3 className="text-2xl font-serif mb-4 text-foreground">Pemesanan WhatsApp</h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <h3 className="text-2xl mb-4 text-foreground font-mono">Pemesanan WhatsApp</h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed text-base">
                   {
                     "Pesan langsung melalui WhatsApp! Kirimkan pesan kepada kami dan kami akan mengkonfirmasi janji Anda dalam hitungan menit."
                   }

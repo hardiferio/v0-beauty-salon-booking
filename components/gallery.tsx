@@ -12,10 +12,10 @@ export function Gallery() {
     <section id="gallery" className="py-20 px-4 bg-secondary/20">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif text-balance mb-6 text-foreground md:text-4xl">
+          <h2 className="text-balance mb-6 text-foreground font-mono text-3xl">
             Kecantikan di Setiap Detail pada diri Anda
           </h2>
-          <p className="text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed text-lg">
+          <p className="text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed text-base">
             {"Jelajahi galeri kami yang menampilkan seni dan transformasi dari tahap kecantikan anda."}
           </p>
         </div>
