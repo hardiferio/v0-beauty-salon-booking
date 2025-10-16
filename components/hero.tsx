@@ -24,7 +24,7 @@ export function Hero() {
 
           <p className="text-gray-200 text-balance mb-12 leading-relaxed drop-shadow-lg text-lg md:text-base font-mono">
             {
-              "Rasakan perawatan kecantikan di tempat kami yang tenang, di mana kami akan memaksimalkan pancaran kecantikan anda."
+              "Nikmati perawatan kecantikan di tempat kami yang tenang, di mana kami akan memaksimalkan pancaran kecantikan anda."
             }
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
