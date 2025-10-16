@@ -32,7 +32,6 @@ export function Footer() {
               <li>@ Karingan</li>
               <li>Banjarmangu, RT. 02 RW. 04</li>
               <li>Kecamatan Banjarmangu - Banjarnegara</li>
-              <li>hello@sekarkedaton.com</li>
             </ul>
           </div>
         </div>
