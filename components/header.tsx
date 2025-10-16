@@ -12,7 +12,7 @@ export function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <div className="running-text-container">
+            <div className="running-text-container font-extralight">
               <div className="text-3xl font-handwriting font-bold tracking-wide running-text">
                 <span className="text-white">Sekar</span>
                 <span className="text-amber-400 ml-2">Kedaton</span>
