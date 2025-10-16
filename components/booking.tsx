@@ -76,7 +76,6 @@ export function Booking() {
                   <h4 className="font-semibold text-foreground mb-1">Kontak</h4>
                   <p className="text-muted-foreground">Umu Rosidah</p>
                   <p className="text-muted-foreground">+62 813-2580-8507</p>
-                  <p className="text-muted-foreground">hello@sekarkedaton.com</p>
                 </div>
               </CardContent>
             </Card>
