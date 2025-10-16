@@ -22,7 +22,7 @@ export function Hero() {
             Maksimalkan kecantikan alami Anda dengan perawatan khusus wanita 
           </h1>
 
-          <p className="text-gray-200 text-balance mb-12 leading-relaxed drop-shadow-lg text-lg md:text-base font-mono">
+          <p className="text-balance mb-12 leading-relaxed drop-shadow-lg text-lg md:text-base font-mono text-white">
             {
               "Nikmati perawatan kecantikan di tempat kami yang tenang, di mana kami akan memaksimalkan pancaran kecantikan anda."
             }
