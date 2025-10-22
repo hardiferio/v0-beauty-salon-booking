@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   description:
     "Pengalaman perawatan luxury di Sekar Kedaton Beauty & Salon. Professional hair, skincare,  dengan pelayanan elegan.",
   generator: "v0.app",
+  icons: {
+    icon: "/favicon.png",
+  },
 }
 
 export default function RootLayout({
