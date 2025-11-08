@@ -1,12 +1,3 @@
-const galleryImages = [
-  "/javanese-woman-elegant-traditional-hair-styling.jpg",
-  "/javanese-woman-receiving-facial-spa-treatment.jpg",
-  "/javanese-woman-professional-nail-art-manicure.jpg",
-  "/javanese-woman-makeup-application-beauty-salon.jpg",
-  "/javanese-woman-hair-transformation-styling.jpg",
-  "/javanese-woman-relaxing-massage-therapy-spa.jpg",
-]
-
 export function Gallery() {
   return (
     <section id="gallery" className="py-20 px-4 bg-secondary/20">
