@@ -1,5 +1,4 @@
 const galleryImages = [
-  
 ]
 
 export function Gallery() {
@@ -8,10 +7,10 @@ export function Gallery() {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-balance mb-6 text-foreground font-mono text-3xl">
-            Kecantikan di Setiap Detail pada diri Anda
+            
           </h2>
           <p className="text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed text-base">
-            {"Jelajahi galeri kami yang menampilkan seni dan transformasi dari tahap kecantikan anda."}
+            {}
           </p>
         </div>
 
