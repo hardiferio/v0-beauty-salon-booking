@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground py-12 px-4">
@@ -23,7 +25,14 @@ export function Footer() {
             </div>
           </div>
 
-         
+          <div>
+            <h4 className="font-semibold mb-4">Admin</h4>
+            <Link href="/admin/login">
+              <button className="px-4 py-2 bg-amber-400 text-black font-semibold rounded hover:bg-amber-500 transition-colors w-full">
+                Login Admin
+              </button>
+            </Link>
+          </div>
 
           <div>
             <h4 className="font-semibold mb-4">Kontak</h4>
