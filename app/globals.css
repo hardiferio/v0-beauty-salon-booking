@@ -76,8 +76,9 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Updated font variables to match actual imports (Inter instead of Geist) */
+  --font-sans: var(--font-sans);
+  --font-mono: "Courier New", monospace;
   /* Adding handwriting font variable for elegant script styling */
   --font-handwriting: var(--font-dancing-script);
   --color-background: var(--background);

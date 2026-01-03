@@ -1,10 +1,11 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "geist/font"
-import { Dancing_Script } from "next/font/google"
+import { Inter, Dancing_Script } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
 const dancingScript = Dancing_Script({
   subsets: ["latin"],
@@ -29,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`font-sans ${Geist.variable} ${Geist_Mono.variable} ${dancingScript.variable}`}>
+      <body className={`font-sans ${inter.variable} ${dancingScript.variable}`}>
         <div className="bg-gradient-to-r from-amber-600 to-amber-400 text-black py-2 overflow-hidden">
           <div className="running-text-container mx-auto">
             <div className="running-text text-lg font-bold tracking-wide">
