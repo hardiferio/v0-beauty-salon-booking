@@ -24,18 +24,21 @@ export default function AdminLogin() {
     try {
       const supabase = createClient()
 
-      // For this implementation, we'll do simple string comparison
-      // In production, you would hash the password and compare with stored hash
       if (username === "admin" && password === "admin123") {
-        // Store session in localStorage
-        localStorage.setItem(
-          "adminSession",
-          JSON.stringify({
-            username: "admin",
-            timestamp: new Date().getTime(),
-          }),
-        )
+        // Store session in localStorage before redirect
+        const sessionData = {
+          username: "admin",
+          timestamp: new Date().getTime(),
+          authenticated: true,
+        }
+        localStorage.setItem("adminSession", JSON.stringify(sessionData))
+
+        // Use a small delay to ensure localStorage is written before redirect
+        await new Promise((resolve) => setTimeout(resolve, 100))
+
+        // Perform the redirect
         router.push("/admin/dashboard")
+        return
       } else {
         setError("Username atau password salah")
       }

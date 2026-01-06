@@ -10,23 +10,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { X, Edit2 } from "lucide-react"
 
 const DEFAULT_SERVICES = [
-  { id: 1, name: "Potong Rambut", price: 35000, image: "public/elegant-hair-salon-styling.jpg" },
-  { id: 2, name: "Facial Premium", price: 75000, image: "public/luxury-facial-skincare-treatment.jpg" },
-  { id: 3, name: "Manicure", price: 45000, image: "public/elegant-nail-art-manicure.jpg" },
-  { id: 4, name: "Massage Therapy", price: 100000, image: "public/serene-spa-massage-therapy.jpg" },
-  { id: 5, name: "Makeup Pengantin", price: 300000, image: "public/bridal-makeup-and-hair-styling.jpg" },
-  { id: 6, name: "Eyelash Extension", price: 150000, image: "public/eyelash-extensions-beauty-treatment.jpg" },
-  { id: 7, name: "Sewa Kostum Pengantin", price: 250000, image: "public/elegant-beauty-salon.png" },
-  { id: 8, name: "Sewa Kebaya", price: 150000, image: "public/beautiful-hair-transformation-before-after.jpg" },
-  {
-    id: 9,
-    name: "Sewa Baju Karnaval",
-    price: 100000,
-    image: "public/professional-indonesian-woman-hijab-portrait.png",
-  },
-  { id: 10, name: "Sewa Baju Adat", price: 150000, image: "public/skar-kedaton-circular-logo.png" },
-  { id: 11, name: "Sewa Jas", price: 120000, image: "public/skar-kedaton-header-logo.png" },
-  { id: 12, name: "Sewa Baju Profesi", price: 100000, image: "public/skar-kedaton-hero-logo.png" },
+  { id: 1, name: "Potong Rambut", price: 35000, image: "/hair-cutting.jpg" },
+  { id: 2, name: "Facial Premium", price: 75000, image: "/facial-treatment.jpg" },
+  { id: 3, name: "Manicure", price: 45000, image: "/manicure.png" },
+  { id: 4, name: "Massage Therapy", price: 100000, image: "/relaxing-massage.png" },
+  { id: 5, name: "Makeup Pengantin", price: 300000, image: "/bridal-makeup.jpg" },
+  { id: 6, name: "Eyelash Extension", price: 150000, image: "/eyelash.jpg" },
+  { id: 7, name: "Sewa Kostum Pengantin", price: 250000, image: "/wedding-costume.jpg" },
+  { id: 8, name: "Sewa Kebaya", price: 150000, image: "/kebaya.jpg" },
+  { id: 9, name: "Sewa Baju Karnaval", price: 100000, image: "/carnival-costume.jpg" },
+  { id: 10, name: "Sewa Baju Adat", price: 150000, image: "/traditional-clothing.jpg" },
+  { id: 11, name: "Sewa Jas", price: 120000, image: "/suit-rental.jpg" },
+  { id: 12, name: "Sewa Baju Profesi", price: 100000, image: "/professional-uniform.jpg" },
 ]
 
 type FinancialRecord = {
@@ -52,18 +47,25 @@ export default function AdminDashboard() {
   const [monthlyData, setMonthlyData] = useState<Array<{ month: string; total: number }>>([])
 
   useEffect(() => {
-    const checkAuth = async () => {
+    const checkAuth = () => {
       const session = localStorage.getItem("adminSession")
+      console.log("[v0] Checking authentication, session found:", !!session)
+
       if (!session) {
+        console.log("[v0] No session found, redirecting to login")
         router.push("/admin/login")
       } else {
+        console.log("[v0] Session found, authenticating user")
         setIsAuthenticated(true)
         loadFinancialData()
       }
       setIsLoading(false)
     }
 
-    checkAuth()
+    // Use setTimeout to ensure component is mounted
+    const timer = setTimeout(checkAuth, 0)
+
+    return () => clearTimeout(timer)
   }, [router])
 
   const loadFinancialData = () => {
