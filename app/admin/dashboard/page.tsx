@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { X } from "lucide-react"
 
-const SERVICES = [
+const DEFAULT_SERVICES = [
   { id: 1, name: "Potong Rambut", price: 35000, image: "public/elegant-hair-salon-styling.jpg" },
   { id: 2, name: "Facial Premium", price: 75000, image: "public/luxury-facial-skincare-treatment.jpg" },
   { id: 3, name: "Manicure", price: 45000, image: "public/elegant-nail-art-manicure.jpg" },
@@ -42,13 +42,12 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("services")
   const router = useRouter()
 
-  const [services, setServices] = useState(SERVICES)
+  const [services, setServices] = useState(DEFAULT_SERVICES)
   const [editingServiceId, setEditingServiceId] = useState<number | null>(null)
   const [editingServiceData, setEditingServiceData] = useState({ name: "", price: 0, image: "" })
 
-  // Financial state
   const [financialRecords, setFinancialRecords] = useState<FinancialRecord[]>([])
-  const [newRecord, setNewRecord] = useState({ customerName: "", service: SERVICES[0].name, price: "" })
+  const [newRecord, setNewRecord] = useState({ customerName: "", service: DEFAULT_SERVICES[0].name, price: "" })
   const [monthlyData, setMonthlyData] = useState<Array<{ month: string; total: number }>>([])
 
   useEffect(() => {
@@ -97,7 +96,7 @@ export default function AdminDashboard() {
       setFinancialRecords(updated)
       localStorage.setItem("financialRecords", JSON.stringify(updated))
       calculateMonthly(updated)
-      setNewRecord({ customerName: "", service: SERVICES[0].name, price: "" })
+      setNewRecord({ customerName: "", service: DEFAULT_SERVICES[0].name, price: "" })
     }
   }
 
@@ -108,7 +107,7 @@ export default function AdminDashboard() {
     calculateMonthly(updated)
   }
 
-  const handleEditService = (id: number, service: (typeof SERVICES)[0]) => {
+  const handleEditService = (id: number, service: (typeof DEFAULT_SERVICES)[0]) => {
     setEditingServiceId(id)
     setEditingServiceData({ name: service.name, price: service.price, image: service.image })
   }
@@ -272,7 +271,6 @@ export default function AdminDashboard() {
             </Card>
           </TabsContent>
 
-          {/* Financial Tab */}
           <TabsContent value="financial">
             <Card className="border-amber-400 bg-gray-900 mt-6">
               <CardHeader>
@@ -280,7 +278,6 @@ export default function AdminDashboard() {
                 <CardDescription className="text-gray-400">Kelola dan lihat laporan keuangan bulanan</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                {/* Add New Record */}
                 <div className="border border-amber-400 p-4 rounded bg-gray-800">
                   <h3 className="text-amber-400 font-bold mb-4">Tambah Transaksi Baru</h3>
                   <div className="space-y-4">
@@ -326,7 +323,6 @@ export default function AdminDashboard() {
                   </div>
                 </div>
 
-                {/* Monthly Report */}
                 {monthlyData.length > 0 && (
                   <div className="border border-amber-400 p-4 rounded bg-gray-800">
                     <h3 className="text-amber-400 font-bold mb-4">Laporan Bulanan</h3>
@@ -344,7 +340,6 @@ export default function AdminDashboard() {
                   </div>
                 )}
 
-                {/* Transaction List */}
                 <div>
                   <h3 className="text-amber-400 font-bold mb-4">Daftar Transaksi</h3>
                   <div className="space-y-2 max-h-96 overflow-y-auto">

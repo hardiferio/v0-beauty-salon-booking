@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { createClient } from "@/lib/supabase/client"
 
 export default function AdminLogin() {
   const [username, setUsername] = useState("")
@@ -21,7 +22,10 @@ export default function AdminLogin() {
     setError(null)
 
     try {
-      // Simple validation for admin credentials
+      const supabase = createClient()
+
+      // For this implementation, we'll do simple string comparison
+      // In production, you would hash the password and compare with stored hash
       if (username === "admin" && password === "admin123") {
         // Store session in localStorage
         localStorage.setItem(
