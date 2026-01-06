@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { createClient } from "@/lib/supabase/client"
 
 export default function AdminLogin() {
   const [username, setUsername] = useState("")
@@ -22,26 +21,29 @@ export default function AdminLogin() {
     setError(null)
 
     try {
-      const supabase = createClient()
+      const response = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      })
 
-      if (username === "admin" && password === "admin123") {
-        // Store session in localStorage before redirect
-        const sessionData = {
-          username: "admin",
-          timestamp: new Date().getTime(),
-          authenticated: true,
-        }
-        localStorage.setItem("adminSession", JSON.stringify(sessionData))
-
-        // Use a small delay to ensure localStorage is written before redirect
-        await new Promise((resolve) => setTimeout(resolve, 100))
-
-        // Perform the redirect
-        router.push("/admin/dashboard")
+      if (!response.ok) {
+        const data = await response.json()
+        setError(data.error || "Login gagal")
         return
-      } else {
-        setError("Username atau password salah")
       }
+
+      // Store session in localStorage before redirect
+      const sessionData = {
+        username: username,
+        timestamp: new Date().getTime(),
+        authenticated: true,
+      }
+      localStorage.setItem("adminSession", JSON.stringify(sessionData))
+
+      // Redirect to dashboard
+      await new Promise((resolve) => setTimeout(resolve, 100))
+      router.push("/admin/dashboard")
     } catch (err) {
       setError(err instanceof Error ? err.message : "Terjadi kesalahan")
     } finally {
