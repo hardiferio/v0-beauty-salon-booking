@@ -31,9 +31,6 @@ export function Header() {
             <a href="#about" className="text-foreground hover:text-primary transition-colors font-sans">
               Tentang
             </a>
-            <a href="#gallery" className="text-foreground hover:text-primary transition-colors font-sans">
-              Galeri
-            </a>
             <a href="#contact" className="text-foreground hover:text-primary transition-colors font-sans">
               Kontak
             </a>
@@ -71,9 +68,6 @@ export function Header() {
               </a>
               <a href="#about" className="text-foreground hover:text-primary transition-colors">
                 Tentang
-              </a>
-              <a href="#gallery" className="text-foreground hover:text-primary transition-colors">
-                Galeri
               </a>
               <a href="#contact" className="text-foreground hover:text-primary transition-colors">
                 Kontak

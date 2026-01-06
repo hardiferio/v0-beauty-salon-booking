@@ -6,66 +6,49 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs"
-import { TabTrigger } from "@/components/ui/tabs" // Import TabTrigger
-
-const GALLERY_ITEMS = [
-  {
-    id: 1,
-    name: "Javanese Woman - Hair Styling",
-    imageUrl: "public/javanese-woman-elegant-traditional-hair-styling.jpg",
-  },
-  { id: 2, name: "Javanese Woman - Facial Spa", imageUrl: "public/javanese-woman-receiving-facial-spa-treatment.jpg" },
-  { id: 3, name: "Javanese Woman - Nail Art", imageUrl: "public/javanese-woman-professional-nail-art-manicure.jpg" },
-  { id: 4, name: "Javanese Woman - Makeup", imageUrl: "public/javanese-woman-makeup-application-beauty-salon.jpg" },
-  {
-    id: 5,
-    name: "Javanese Woman - Hair Transformation",
-    imageUrl: "public/javanese-woman-hair-transformation-styling.jpg",
-  },
-  {
-    id: 6,
-    name: "Javanese Woman - Massage Therapy",
-    imageUrl: "public/javanese-woman-relaxing-massage-therapy-spa.jpg",
-  },
-]
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { X } from "lucide-react"
 
 const SERVICES = [
-  "Hair Styling",
-  "Facial Spa",
-  "Nail Art",
-  "Makeup",
-  "Hair Transformation",
-  "Massage Therapy",
-  "Wedding Costume",
-  "Kebaya Rental",
-  "Carnival Costume",
-  "Traditional Clothing",
-  "Formal Suit",
-  "Professional Uniform",
+  { id: 1, name: "Potong Rambut", price: 35000, image: "public/elegant-hair-salon-styling.jpg" },
+  { id: 2, name: "Facial Premium", price: 75000, image: "public/luxury-facial-skincare-treatment.jpg" },
+  { id: 3, name: "Manicure", price: 45000, image: "public/elegant-nail-art-manicure.jpg" },
+  { id: 4, name: "Massage Therapy", price: 100000, image: "public/serene-spa-massage-therapy.jpg" },
+  { id: 5, name: "Makeup Pengantin", price: 300000, image: "public/bridal-makeup-and-hair-styling.jpg" },
+  { id: 6, name: "Eyelash Extension", price: 150000, image: "public/eyelash-extensions-beauty-treatment.jpg" },
+  { id: 7, name: "Sewa Kostum Pengantin", price: 250000, image: "public/elegant-beauty-salon.png" },
+  { id: 8, name: "Sewa Kebaya", price: 150000, image: "public/beautiful-hair-transformation-before-after.jpg" },
+  {
+    id: 9,
+    name: "Sewa Baju Karnaval",
+    price: 100000,
+    image: "public/professional-indonesian-woman-hijab-portrait.png",
+  },
+  { id: 10, name: "Sewa Baju Adat", price: 150000, image: "public/skar-kedaton-circular-logo.png" },
+  { id: 11, name: "Sewa Jas", price: 120000, image: "public/skar-kedaton-header-logo.png" },
+  { id: 12, name: "Sewa Baju Profesi", price: 100000, image: "public/skar-kedaton-hero-logo.png" },
 ]
+
+type FinancialRecord = {
+  id: string
+  customerName: string
+  service: string
+  price: number
+  date: string
+}
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [activeTab, setActiveTab] = useState("dashboard")
+  const [activeTab, setActiveTab] = useState("services")
   const router = useRouter()
 
-  // Gallery state
-  const [galleryItems, setGalleryItems] = useState(GALLERY_ITEMS)
-  const [editingGalleryId, setEditingGalleryId] = useState<number | null>(null)
-  const [editingGalleryData, setEditingGalleryData] = useState({ name: "", imageUrl: "" })
+  const [services, setServices] = useState(SERVICES)
+  const [editingServiceId, setEditingServiceId] = useState<number | null>(null)
+  const [editingServiceData, setEditingServiceData] = useState({ name: "", price: 0, image: "" })
 
   // Financial state
-  const [financialRecords, setFinancialRecords] = useState<
-    Array<{
-      id: string
-      customerName: string
-      service: string
-      price: number
-      date: string
-    }>
-  >([])
-  const [newRecord, setNewRecord] = useState({ customerName: "", service: SERVICES[0], price: "" })
+  const [financialRecords, setFinancialRecords] = useState<FinancialRecord[]>([])
+  const [newRecord, setNewRecord] = useState({ customerName: "", service: SERVICES[0].name, price: "" })
   const [monthlyData, setMonthlyData] = useState<Array<{ month: string; total: number }>>([])
 
   useEffect(() => {
@@ -87,7 +70,7 @@ export default function AdminDashboard() {
     }
   }
 
-  const calculateMonthly = (records: typeof financialRecords) => {
+  const calculateMonthly = (records: FinancialRecord[]) => {
     const monthlyMap: Record<string, number> = {}
     records.forEach((record) => {
       const date = new Date(record.date)
@@ -114,7 +97,7 @@ export default function AdminDashboard() {
       setFinancialRecords(updated)
       localStorage.setItem("financialRecords", JSON.stringify(updated))
       calculateMonthly(updated)
-      setNewRecord({ customerName: "", service: SERVICES[0], price: "" })
+      setNewRecord({ customerName: "", service: SERVICES[0].name, price: "" })
     }
   }
 
@@ -125,18 +108,18 @@ export default function AdminDashboard() {
     calculateMonthly(updated)
   }
 
-  const handleEditGallery = (id: number, item: (typeof GALLERY_ITEMS)[0]) => {
-    setEditingGalleryId(id)
-    setEditingGalleryData(item)
+  const handleEditService = (id: number, service: (typeof SERVICES)[0]) => {
+    setEditingServiceId(id)
+    setEditingServiceData({ name: service.name, price: service.price, image: service.image })
   }
 
-  const handleSaveGallery = () => {
-    if (editingGalleryId !== null) {
-      setGalleryItems(
-        galleryItems.map((item) => (item.id === editingGalleryId ? { ...item, ...editingGalleryData } : item)),
+  const handleSaveService = () => {
+    if (editingServiceId !== null) {
+      setServices(
+        services.map((service) => (service.id === editingServiceId ? { ...service, ...editingServiceData } : service)),
       )
-      setEditingGalleryId(null)
-      setEditingGalleryData({ name: "", imageUrl: "" })
+      setEditingServiceId(null)
+      setEditingServiceData({ name: "", price: 0, image: "" })
     }
   }
 
@@ -159,7 +142,7 @@ export default function AdminDashboard() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-4xl font-bold text-amber-400 font-serif">Admin Dashboard</h1>
-            <p className="text-gray-400 mt-2">Kelola galeri dan laporan keuangan salon Anda</p>
+            <p className="text-gray-400 mt-2">Kelola layanan, gambar, harga, dan laporan keuangan salon Anda</p>
           </div>
           <Button onClick={handleLogout} className="bg-red-600 hover:bg-red-700 text-white">
             Logout
@@ -195,47 +178,34 @@ export default function AdminDashboard() {
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="bg-gray-800 border-b border-amber-400">
-            <TabTrigger value="dashboard" className="text-gray-300 data-[state=active]:text-amber-400">
-              Dashboard
-            </TabTrigger>
-            <TabTrigger value="gallery" className="text-gray-300 data-[state=active]:text-amber-400">
-              Manajemen Galeri
-            </TabTrigger>
-            <TabTrigger value="financial" className="text-gray-300 data-[state=active]:text-amber-400">
+            <TabsTrigger value="services" className="text-gray-300 data-[state=active]:text-amber-400">
+              Manajemen Layanan
+            </TabsTrigger>
+            <TabsTrigger value="financial" className="text-gray-300 data-[state=active]:text-amber-400">
               Laporan Keuangan
-            </TabTrigger>
+            </TabsTrigger>
           </TabsList>
 
-          {/* Dashboard Tab */}
-          <TabsContent value="dashboard">
+          <TabsContent value="services">
             <Card className="border-amber-400 bg-gray-900 mt-6">
               <CardHeader>
-                <CardTitle className="text-amber-400">Selamat Datang di Dashboard Admin</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-300 space-y-2">
-                <p>Anda telah berhasil masuk ke dashboard admin Sekar Kedaton Beauty Salon.</p>
-                <p>Gunakan tab di atas untuk mengelola galeri dan laporan keuangan salon Anda.</p>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Gallery Tab */}
-          <TabsContent value="gallery">
-            <Card className="border-amber-400 bg-gray-900 mt-6">
-              <CardHeader>
-                <CardTitle className="text-amber-400">Manajemen Galeri</CardTitle>
-                <CardDescription className="text-gray-400">Edit gambar dan nama layanan galeri</CardDescription>
+                <CardTitle className="text-amber-400">Manajemen Layanan</CardTitle>
+                <CardDescription className="text-gray-400">Edit nama layanan, harga, dan gambar</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {galleryItems.map((item) => (
-                    <div key={item.id} className="flex items-center justify-between border border-gray-700 p-4 rounded">
+                  {services.map((service) => (
+                    <div
+                      key={service.id}
+                      className="flex items-center justify-between border border-gray-700 p-4 rounded"
+                    >
                       <div className="flex-1">
-                        <h3 className="text-amber-400 font-semibold">{item.name}</h3>
-                        <p className="text-gray-400 text-sm">{item.imageUrl}</p>
+                        <h3 className="text-amber-400 font-semibold">{service.name}</h3>
+                        <p className="text-gray-400 text-sm">Rp {service.price.toLocaleString("id-ID")}</p>
+                        <p className="text-gray-500 text-xs mt-1">{service.image}</p>
                       </div>
                       <Button
-                        onClick={() => handleEditGallery(item.id, item)}
+                        onClick={() => handleEditService(service.id, service)}
                         className="bg-amber-400 text-black hover:bg-amber-500"
                       >
                         Edit
@@ -243,32 +213,52 @@ export default function AdminDashboard() {
                     </div>
                   ))}
 
-                  {editingGalleryId && (
+                  {editingServiceId && (
                     <div className="border border-amber-400 p-4 rounded bg-gray-800 mt-6">
-                      <h3 className="text-amber-400 font-bold mb-4">Edit Galeri Item #{editingGalleryId}</h3>
+                      <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-amber-400 font-bold">Edit Layanan</h3>
+                        <button onClick={() => setEditingServiceId(null)} className="text-gray-400 hover:text-white">
+                          <X size={20} />
+                        </button>
+                      </div>
                       <div className="space-y-4">
                         <div>
                           <Label className="text-gray-300">Nama Layanan</Label>
                           <Input
-                            value={editingGalleryData.name}
-                            onChange={(e) => setEditingGalleryData({ ...editingGalleryData, name: e.target.value })}
+                            value={editingServiceData.name}
+                            onChange={(e) => setEditingServiceData({ ...editingServiceData, name: e.target.value })}
                             className="bg-gray-700 border-gray-600 text-white mt-1"
                           />
                         </div>
                         <div>
-                          <Label className="text-gray-300">URL Gambar</Label>
+                          <Label className="text-gray-300">Harga (Rp)</Label>
                           <Input
-                            value={editingGalleryData.imageUrl}
-                            onChange={(e) => setEditingGalleryData({ ...editingGalleryData, imageUrl: e.target.value })}
+                            type="number"
+                            value={editingServiceData.price}
+                            onChange={(e) =>
+                              setEditingServiceData({
+                                ...editingServiceData,
+                                price: Number.parseFloat(e.target.value),
+                              })
+                            }
+                            className="bg-gray-700 border-gray-600 text-white mt-1"
+                          />
+                        </div>
+                        <div>
+                          <Label className="text-gray-300">Path Gambar</Label>
+                          <Input
+                            value={editingServiceData.image}
+                            onChange={(e) => setEditingServiceData({ ...editingServiceData, image: e.target.value })}
                             className="bg-gray-700 border border-gray-600 text-white mt-1"
+                            placeholder="public/nama-gambar.jpg"
                           />
                         </div>
                         <div className="flex gap-2">
-                          <Button onClick={handleSaveGallery} className="bg-green-600 hover:bg-green-700 text-white">
+                          <Button onClick={handleSaveService} className="bg-green-600 hover:bg-green-700 text-white">
                             Simpan
                           </Button>
                           <Button
-                            onClick={() => setEditingGalleryId(null)}
+                            onClick={() => setEditingServiceId(null)}
                             className="bg-gray-600 hover:bg-gray-700 text-white"
                           >
                             Batal
@@ -310,9 +300,9 @@ export default function AdminDashboard() {
                         onChange={(e) => setNewRecord({ ...newRecord, service: e.target.value })}
                         className="w-full bg-gray-700 border border-gray-600 text-white rounded px-3 py-2 mt-1"
                       >
-                        {SERVICES.map((service) => (
-                          <option key={service} value={service}>
-                            {service}
+                        {services.map((service) => (
+                          <option key={service.id} value={service.name}>
+                            {service.name}
                           </option>
                         ))}
                       </select>
