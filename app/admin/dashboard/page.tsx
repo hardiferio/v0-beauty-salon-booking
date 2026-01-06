@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { X } from "lucide-react"
+import { X, Edit2 } from "lucide-react"
 
 const DEFAULT_SERVICES = [
   { id: 1, name: "Potong Rambut", price: 35000, image: "public/elegant-hair-salon-styling.jpg" },
@@ -151,7 +151,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-black p-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-4xl font-bold text-amber-400 font-serif">Admin Dashboard</h1>
@@ -200,89 +200,94 @@ export default function AdminDashboard() {
           </TabsList>
 
           <TabsContent value="services">
-            <Card className="border-amber-400 bg-gray-900 mt-6">
-              <CardHeader>
-                <CardTitle className="text-amber-400">Manajemen Layanan</CardTitle>
-                <CardDescription className="text-gray-400">Edit nama layanan, harga, dan gambar</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {services.map((service) => (
-                    <div
-                      key={service.id}
-                      className="flex items-center justify-between border border-gray-700 p-4 rounded"
-                    >
-                      <div className="flex-1">
-                        <h3 className="text-amber-400 font-semibold">{service.name}</h3>
-                        <p className="text-gray-400 text-sm">Rp {service.price.toLocaleString("id-ID")}</p>
-                        <p className="text-gray-500 text-xs mt-1">{service.image}</p>
-                      </div>
+            <div className="mt-6">
+              <h2 className="text-2xl font-bold text-amber-400 mb-6">Daftar Layanan Salon</h2>
+
+              {editingServiceId && (
+                <div className="mb-8 border border-amber-400 p-6 rounded bg-gray-800">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="text-xl text-amber-400 font-bold">Edit Layanan</h3>
+                    <button onClick={() => setEditingServiceId(null)} className="text-gray-400 hover:text-white">
+                      <X size={24} />
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <Label className="text-gray-300">Nama Layanan</Label>
+                      <Input
+                        value={editingServiceData.name}
+                        onChange={(e) => setEditingServiceData({ ...editingServiceData, name: e.target.value })}
+                        className="bg-gray-700 border-gray-600 text-white mt-2"
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-gray-300">Harga (Rp)</Label>
+                      <Input
+                        type="number"
+                        value={editingServiceData.price}
+                        onChange={(e) =>
+                          setEditingServiceData({
+                            ...editingServiceData,
+                            price: Number.parseFloat(e.target.value),
+                          })
+                        }
+                        className="bg-gray-700 border-gray-600 text-white mt-2"
+                      />
+                    </div>
+                    <div className="md:col-span-2">
+                      <Label className="text-gray-300">Path Gambar</Label>
+                      <Input
+                        value={editingServiceData.image}
+                        onChange={(e) => setEditingServiceData({ ...editingServiceData, image: e.target.value })}
+                        className="bg-gray-700 border-gray-600 text-white mt-2"
+                        placeholder="public/nama-gambar.jpg"
+                      />
+                    </div>
+                    <div className="md:col-span-2 flex gap-2">
+                      <Button onClick={handleSaveService} className="bg-green-600 hover:bg-green-700 text-white flex-1">
+                        Simpan Perubahan
+                      </Button>
                       <Button
-                        onClick={() => handleEditService(service.id, service)}
-                        className="bg-amber-400 text-black hover:bg-amber-500"
+                        onClick={() => setEditingServiceId(null)}
+                        className="bg-gray-600 hover:bg-gray-700 text-white flex-1"
                       >
-                        Edit
+                        Batal
                       </Button>
                     </div>
-                  ))}
-
-                  {editingServiceId && (
-                    <div className="border border-amber-400 p-4 rounded bg-gray-800 mt-6">
-                      <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-amber-400 font-bold">Edit Layanan</h3>
-                        <button onClick={() => setEditingServiceId(null)} className="text-gray-400 hover:text-white">
-                          <X size={20} />
-                        </button>
-                      </div>
-                      <div className="space-y-4">
-                        <div>
-                          <Label className="text-gray-300">Nama Layanan</Label>
-                          <Input
-                            value={editingServiceData.name}
-                            onChange={(e) => setEditingServiceData({ ...editingServiceData, name: e.target.value })}
-                            className="bg-gray-700 border-gray-600 text-white mt-1"
-                          />
-                        </div>
-                        <div>
-                          <Label className="text-gray-300">Harga (Rp)</Label>
-                          <Input
-                            type="number"
-                            value={editingServiceData.price}
-                            onChange={(e) =>
-                              setEditingServiceData({
-                                ...editingServiceData,
-                                price: Number.parseFloat(e.target.value),
-                              })
-                            }
-                            className="bg-gray-700 border-gray-600 text-white mt-1"
-                          />
-                        </div>
-                        <div>
-                          <Label className="text-gray-300">Path Gambar</Label>
-                          <Input
-                            value={editingServiceData.image}
-                            onChange={(e) => setEditingServiceData({ ...editingServiceData, image: e.target.value })}
-                            className="bg-gray-700 border border-gray-600 text-white mt-1"
-                            placeholder="public/nama-gambar.jpg"
-                          />
-                        </div>
-                        <div className="flex gap-2">
-                          <Button onClick={handleSaveService} className="bg-green-600 hover:bg-green-700 text-white">
-                            Simpan
-                          </Button>
-                          <Button
-                            onClick={() => setEditingServiceId(null)}
-                            className="bg-gray-600 hover:bg-gray-700 text-white"
-                          >
-                            Batal
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              )}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {services.map((service) => (
+                  <Card
+                    key={service.id}
+                    className="overflow-hidden bg-gray-900 border-gray-700 hover:border-amber-400 transition-colors"
+                  >
+                    <div className="aspect-[3/2] overflow-hidden bg-gray-800">
+                      <img
+                        src={service.image || "/placeholder.svg"}
+                        alt={service.name}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-serif text-white mb-2">{service.name}</h3>
+                      <p className="text-amber-400 text-lg font-bold mb-4">
+                        Rp {service.price.toLocaleString("id-ID")}
+                      </p>
+                      <Button
+                        onClick={() => handleEditService(service.id, service)}
+                        className="w-full bg-amber-400 text-black hover:bg-amber-500 flex items-center justify-center gap-2"
+                      >
+                        <Edit2 size={16} />
+                        Edit Layanan
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
           </TabsContent>
 
           <TabsContent value="financial">
