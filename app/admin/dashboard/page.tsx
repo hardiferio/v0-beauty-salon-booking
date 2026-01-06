@@ -38,6 +38,7 @@ type FinancialRecord = {
 }
 
 export default function AdminDashboard() {
+  const [isLoading, setIsLoading] = useState(true)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [activeTab, setActiveTab] = useState("services")
   const router = useRouter()
@@ -51,13 +52,18 @@ export default function AdminDashboard() {
   const [monthlyData, setMonthlyData] = useState<Array<{ month: string; total: number }>>([])
 
   useEffect(() => {
-    const session = localStorage.getItem("adminSession")
-    if (!session) {
-      router.push("/admin/login")
-    } else {
-      setIsAuthenticated(true)
-      loadFinancialData()
+    const checkAuth = async () => {
+      const session = localStorage.getItem("adminSession")
+      if (!session) {
+        router.push("/admin/login")
+      } else {
+        setIsAuthenticated(true)
+        loadFinancialData()
+      }
+      setIsLoading(false)
     }
+
+    checkAuth()
   }, [router])
 
   const loadFinancialData = () => {
@@ -125,6 +131,14 @@ export default function AdminDashboard() {
   const handleLogout = () => {
     localStorage.removeItem("adminSession")
     router.push("/admin/login")
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white text-xl">Memuat...</div>
+      </div>
+    )
   }
 
   if (!isAuthenticated) {
