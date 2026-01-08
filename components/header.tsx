@@ -22,7 +22,7 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8 font-sans">
-            <a href="#home" className="text-foreground hover:text-primary transition-colors font-mono">
+            <a href="#home" className="text-foreground hover:text-primary transition-colors font-sans">
               Beranda
             </a>
             <a href="#services" className="text-foreground hover:text-primary transition-colors font-sans">

@@ -3,8 +3,8 @@ export function About() {
     <section id="about" className="py-20 px-4">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          <div className="font-mono order-2 lg:order-1">
-            <h2 className="text-3xl sm:text-4xl text-balance mb-6 sm:mb-8 text-foreground md:text-4xl font-mono">
+          <div className="font-sans order-2 lg:order-1">
+            <h2 className="text-3xl sm:text-4xl text-balance mb-6 sm:mb-8 text-foreground md:text-4xl font-handwriting font-bold">
               Didedikasikan untuk perjalanan kecantikan Anda
             </h2>
             <div className="space-y-4 sm:space-y-6 text-muted-foreground leading-relaxed">

@@ -210,7 +210,7 @@ export function Services() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02)_0%,transparent_50%)] pointer-events-none"></div>
       <div className="container mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl text-balance mb-4 sm:mb-6 text-foreground font-mono md:text-4xl">
+          <h2 className="text-3xl sm:text-4xl text-balance mb-4 sm:mb-6 text-foreground font-handwriting md:text-5xl font-bold">
             Layanan Kami
           </h2>
           <p className="text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed text-sm sm:text-base px-2">
@@ -234,7 +234,7 @@ export function Services() {
                 />
               </div>
               <CardContent className="p-4 sm:p-6">
-                <h3 className="text-lg sm:text-2xl font-serif mb-2 sm:mb-3 text-foreground line-clamp-2">
+                <h3 className="text-lg sm:text-2xl font-handwriting mb-2 sm:mb-3 text-foreground line-clamp-2">
                   {service.title}
                 </h3>
                 <p className="text-muted-foreground mb-4 leading-relaxed text-sm sm:text-base line-clamp-3">
