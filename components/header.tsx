@@ -58,18 +58,18 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 border-t border-border pt-4">
-            <div className="flex flex-col space-y-4">
-              <a href="#home" className="text-foreground hover:text-primary transition-colors">
+          <nav className="md:hidden mt-4 pb-4 border-t border-border pt-4 space-y-3">
+            <div className="flex flex-col space-y-2">
+              <a href="#home" className="text-foreground hover:text-accent transition-colors text-sm px-2 py-1.5">
                 Beranda
               </a>
-              <a href="#services" className="text-foreground hover:text-primary transition-colors">
+              <a href="#services" className="text-foreground hover:text-accent transition-colors text-sm px-2 py-1.5">
                 Layanan
               </a>
-              <a href="#about" className="text-foreground hover:text-primary transition-colors">
+              <a href="#about" className="text-foreground hover:text-accent transition-colors text-sm px-2 py-1.5">
                 Tentang
               </a>
-              <a href="#contact" className="text-foreground hover:text-primary transition-colors">
+              <a href="#contact" className="text-foreground hover:text-accent transition-colors text-sm px-2 py-1.5">
                 Kontak
               </a>
               <Button
@@ -79,7 +79,7 @@ export function Header() {
                     "_blank",
                   )
                 }
-                className="bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 hover:from-amber-700 hover:via-yellow-700 hover:to-amber-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 border-0 w-full"
+                className="bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 hover:from-amber-700 hover:via-yellow-700 hover:to-amber-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 border-0 w-full text-sm py-2 mt-2"
               >
                 Buat Janji
               </Button>

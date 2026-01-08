@@ -206,23 +206,25 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="py-20 px-4 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 relative">
+    <section id="services" className="py-20 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 relative">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02)_0%,transparent_50%)] pointer-events-none"></div>
-      <div className="container mx-auto relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl text-balance mb-6 text-foreground font-mono md:text-3xl">Layanan Kami</h2>
-          <p className="text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed text-base">
+      <div className="container mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl text-balance mb-4 sm:mb-6 text-foreground font-mono md:text-4xl">
+            Layanan Kami
+          </h2>
+          <p className="text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed text-sm sm:text-base px-2">
             {
               "Temukan berbagai layanan kecantikan dan kesehatan terlengkap dengan harga terjangkau di Sekar Kedaton Beauty Salon."
             }
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {services.map((service, index) => (
             <Card
               key={index}
-              className="overflow-hidden hover:shadow-2xl transition-all duration-300 bg-card/80 backdrop-blur-sm border-border/50 hover:border-primary/30 mx-6 px-2 my-0"
+              className="overflow-hidden hover:shadow-2xl transition-all duration-300 bg-card/80 backdrop-blur-sm border-border/50 hover:border-accent/30 mx-0 px-0 my-0"
             >
               <div className="aspect-[3/2] overflow-hidden">
                 <img
@@ -231,11 +233,15 @@ export function Services() {
                   className="w-full object-cover hover:scale-105 transition-transform duration-300 h-full"
                 />
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-2xl font-serif mb-3 text-foreground">{service.title}</h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">{service.description}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-medium text-primary">{service.price}</span>
+              <CardContent className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-2xl font-serif mb-2 sm:mb-3 text-foreground line-clamp-2">
+                  {service.title}
+                </h3>
+                <p className="text-muted-foreground mb-4 leading-relaxed text-sm sm:text-base line-clamp-3">
+                  {service.description}
+                </p>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-base sm:text-lg font-medium text-accent line-clamp-1">{service.price}</span>
                   <Button
                     variant="outline"
                     size="sm"
@@ -245,7 +251,7 @@ export function Services() {
                         "_blank",
                       )
                     }
-                    className="bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 hover:from-amber-700 hover:via-yellow-700 hover:to-amber-800 text-white shadow-md hover:shadow-lg transition-all duration-300 border-0"
+                    className="bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 hover:from-amber-700 hover:via-yellow-700 hover:to-amber-800 text-white shadow-md hover:shadow-lg transition-all duration-300 border-0 text-xs sm:text-sm"
                   >
                     Book Now
                   </Button>
