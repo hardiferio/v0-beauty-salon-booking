@@ -1,31 +1,22 @@
-import { createClient } from "@/lib/supabase/server"
 import { type NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
   try {
     const { username, password } = await request.json()
 
-    const supabase = await createClient()
-
-    const { data: adminUser, error } = await supabase
-      .from("admin_users")
-      .select("*")
-      .eq("username", username)
-      .eq("password", password)
-      .single()
-
-    if (error || !adminUser) {
-      return NextResponse.json({ error: "Username atau password salah" }, { status: 401 })
+    // Simple local validation instead of Supabase query
+    if (username === "admin" && password === "admin123") {
+      return NextResponse.json({
+        success: true,
+        message: "Login berhasil",
+        user: {
+          id: 1,
+          username: "admin",
+        },
+      })
     }
 
-    return NextResponse.json({
-      success: true,
-      message: "Login berhasil",
-      user: {
-        id: adminUser.id,
-        username: adminUser.username,
-      },
-    })
+    return NextResponse.json({ error: "Username atau password salah" }, { status: 401 })
   } catch (error) {
     return NextResponse.json({ error: "Terjadi kesalahan server" }, { status: 500 })
   }
