@@ -8,8 +8,24 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { X, Edit2 } from "lucide-react"
+import { createClient } from "@/lib/supabase/client"
 
-const DEFAULT_SERVICES = [
+type Service = {
+  id: number
+  name: string
+  price: number
+  image: string
+}
+
+type FinancialRecord = {
+  id: string
+  customer_name: string
+  service: string
+  price: number
+  date: string
+}
+
+const DEFAULT_SERVICES: Service[] = [
   { id: 1, name: "Potong Rambut", price: 35000, image: "/hair-cutting.jpg" },
   { id: 2, name: "Facial Premium", price: 75000, image: "/facial-treatment.jpg" },
   { id: 3, name: "Manicure", price: 45000, image: "/manicure.png" },
@@ -24,21 +40,13 @@ const DEFAULT_SERVICES = [
   { id: 12, name: "Sewa Baju Profesi", price: 100000, image: "/professional-uniform.jpg" },
 ]
 
-type FinancialRecord = {
-  id: string
-  customerName: string
-  service: string
-  price: number
-  date: string
-}
-
 export default function AdminDashboard() {
   const [isLoading, setIsLoading] = useState(true)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [activeTab, setActiveTab] = useState("services")
   const router = useRouter()
 
-  const [services, setServices] = useState(DEFAULT_SERVICES)
+  const [services, setServices] = useState<Service[]>(DEFAULT_SERVICES)
   const [editingServiceId, setEditingServiceId] = useState<number | null>(null)
   const [editingServiceData, setEditingServiceData] = useState({ name: "", price: 0, image: "" })
 
@@ -47,7 +55,7 @@ export default function AdminDashboard() {
   const [monthlyData, setMonthlyData] = useState<Array<{ month: string; total: number }>>([])
 
   useEffect(() => {
-    const checkAuth = () => {
+    const checkAuth = async () => {
       const session = localStorage.getItem("adminSession")
       console.log("[v0] Checking authentication, session found:", !!session)
 
@@ -57,7 +65,8 @@ export default function AdminDashboard() {
       } else {
         console.log("[v0] Session found, authenticating user")
         setIsAuthenticated(true)
-        loadFinancialData()
+        await loadServicesFromSupabase()
+        await loadFinancialDataFromSupabase()
       }
       setIsLoading(false)
     }
@@ -68,12 +77,53 @@ export default function AdminDashboard() {
     return () => clearTimeout(timer)
   }, [router])
 
-  const loadFinancialData = () => {
-    const saved = localStorage.getItem("financialRecords")
-    if (saved) {
-      const records = JSON.parse(saved)
-      setFinancialRecords(records)
-      calculateMonthly(records)
+  const loadServicesFromSupabase = async () => {
+    try {
+      const supabase = createClient()
+      const { data, error } = await supabase.from("services").select("*")
+
+      if (error) {
+        console.log("[v0] Supabase error loading services, using defaults:", error.message)
+        setServices(DEFAULT_SERVICES)
+      } else if (data && data.length > 0) {
+        console.log("[v0] Loaded services from Supabase:", data.length)
+        setServices(data)
+      } else {
+        console.log("[v0] No services in Supabase, using defaults")
+        setServices(DEFAULT_SERVICES)
+      }
+    } catch (err) {
+      console.log("[v0] Error loading services:", err)
+      setServices(DEFAULT_SERVICES)
+    }
+  }
+
+  const loadFinancialDataFromSupabase = async () => {
+    try {
+      const supabase = createClient()
+      const { data, error } = await supabase.from("financial_records").select("*").order("date", { ascending: false })
+
+      if (error) {
+        console.log("[v0] Supabase error loading financial records:", error.message)
+        const saved = localStorage.getItem("financialRecords")
+        if (saved) {
+          const records = JSON.parse(saved)
+          setFinancialRecords(records)
+          calculateMonthly(records)
+        }
+      } else if (data) {
+        console.log("[v0] Loaded financial records from Supabase:", data.length)
+        setFinancialRecords(data)
+        calculateMonthly(data)
+      }
+    } catch (err) {
+      console.log("[v0] Error loading financial data:", err)
+      const saved = localStorage.getItem("financialRecords")
+      if (saved) {
+        const records = JSON.parse(saved)
+        setFinancialRecords(records)
+        calculateMonthly(records)
+      }
     }
   }
 
@@ -91,37 +141,85 @@ export default function AdminDashboard() {
     setMonthlyData(monthly)
   }
 
-  const handleAddFinancialRecord = () => {
+  const handleAddFinancialRecord = async () => {
     if (newRecord.customerName && newRecord.price) {
       const record = {
-        id: Date.now().toString(),
-        customerName: newRecord.customerName,
+        customer_name: newRecord.customerName,
         service: newRecord.service,
         price: Number.parseFloat(newRecord.price),
         date: new Date().toISOString().split("T")[0],
       }
-      const updated = [...financialRecords, record]
-      setFinancialRecords(updated)
-      localStorage.setItem("financialRecords", JSON.stringify(updated))
-      calculateMonthly(updated)
+
+      try {
+        const supabase = createClient()
+        const { data, error } = await supabase.from("financial_records").insert([record]).select()
+
+        if (error) {
+          console.log("[v0] Error adding financial record to Supabase:", error.message)
+          // Fallback to localStorage
+          const updated = [...financialRecords, { ...record, id: Date.now().toString() }]
+          setFinancialRecords(updated)
+          localStorage.setItem("financialRecords", JSON.stringify(updated))
+          calculateMonthly(updated)
+        } else if (data) {
+          console.log("[v0] Added financial record to Supabase")
+          const updated = [...financialRecords, data[0]]
+          setFinancialRecords(updated)
+          calculateMonthly(updated)
+        }
+      } catch (err) {
+        console.log("[v0] Error with Supabase, using localStorage:", err)
+        const updated = [...financialRecords, { ...record, id: Date.now().toString() }]
+        setFinancialRecords(updated)
+        localStorage.setItem("financialRecords", JSON.stringify(updated))
+        calculateMonthly(updated)
+      }
+
       setNewRecord({ customerName: "", service: DEFAULT_SERVICES[0].name, price: "" })
     }
   }
 
-  const handleDeleteFinancialRecord = (id: string) => {
+  const handleDeleteFinancialRecord = async (id: string) => {
+    try {
+      const supabase = createClient()
+      const { error } = await supabase.from("financial_records").delete().eq("id", id)
+
+      if (error) {
+        console.log("[v0] Error deleting record from Supabase:", error.message)
+      }
+    } catch (err) {
+      console.log("[v0] Error with Supabase delete:", err)
+    }
+
     const updated = financialRecords.filter((r) => r.id !== id)
     setFinancialRecords(updated)
     localStorage.setItem("financialRecords", JSON.stringify(updated))
     calculateMonthly(updated)
   }
 
-  const handleEditService = (id: number, service: (typeof DEFAULT_SERVICES)[0]) => {
+  const handleEditService = (id: number, service: Service) => {
     setEditingServiceId(id)
     setEditingServiceData({ name: service.name, price: service.price, image: service.image })
   }
 
-  const handleSaveService = () => {
+  const handleSaveService = async () => {
     if (editingServiceId !== null) {
+      try {
+        const supabase = createClient()
+        const { error } = await supabase
+          .from("services")
+          .update({ name: editingServiceData.name, price: editingServiceData.price, image: editingServiceData.image })
+          .eq("id", editingServiceId)
+
+        if (error) {
+          console.log("[v0] Error updating service in Supabase:", error.message)
+        } else {
+          console.log("[v0] Updated service in Supabase")
+        }
+      } catch (err) {
+        console.log("[v0] Error with Supabase update:", err)
+      }
+
       setServices(
         services.map((service) => (service.id === editingServiceId ? { ...service, ...editingServiceData } : service)),
       )
@@ -373,7 +471,7 @@ export default function AdminDashboard() {
                           className="flex items-center justify-between border border-gray-700 p-3 rounded"
                         >
                           <div className="flex-1">
-                            <p className="text-white font-semibold">{record.customerName}</p>
+                            <p className="text-white font-semibold">{record.customer_name}</p>
                             <p className="text-gray-400 text-sm">
                               {record.service} - {record.date}
                             </p>
