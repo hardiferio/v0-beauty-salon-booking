@@ -261,6 +261,16 @@
   position: relative;
 }
 
+.running-text-container-header {
+  overflow: hidden;
+  max-width: 200px;
+  position: relative;
+}
+
+.running-text-header {
+  animation: runningText 8s linear infinite;
+}
+
 .running-title {
   animation: runningTitle 15s linear infinite;
   white-space: nowrap;
