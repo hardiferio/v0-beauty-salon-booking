@@ -44,13 +44,20 @@ export function Header() {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <div className="flex items-center group cursor-pointer" onClick={() => handleSmoothScroll("#home")}>
-            <div className="font-handwriting font-bold tracking-wide transform transition-transform duration-300 group-hover:scale-105">
-              <div className="text-2xl md:text-3xl">
+          {/* Logo - Running Text */}
+          <div 
+            className="flex items-center group cursor-pointer overflow-hidden running-text-container-header" 
+            onClick={() => handleSmoothScroll("#home")}
+          >
+            <div className="font-handwriting font-bold tracking-wide running-text-header whitespace-nowrap">
+              <span className="text-2xl md:text-3xl inline-block">
                 <span className="text-foreground">Sekar</span>
                 <span className="text-accent ml-2">Kedaton</span>
-              </div>
+              </span>
+              <span className="text-2xl md:text-3xl inline-block ml-8">
+                <span className="text-foreground">Sekar</span>
+                <span className="text-accent ml-2">Kedaton</span>
+              </span>
             </div>
           </div>
 
