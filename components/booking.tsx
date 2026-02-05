@@ -7,7 +7,6 @@ import { MessageCircle, Clock, MapPin, Phone, CheckCircle, AlertCircle } from "l
 
 interface FormData {
   name: string
-  email: string
   phone: string
   service: string
   date: string
@@ -22,7 +21,6 @@ interface FormErrors {
 export function Booking() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
-    email: "",
     phone: "",
     service: "",
     date: "",
@@ -50,9 +48,6 @@ export function Booking() {
     const newErrors: FormErrors = {}
 
     if (!formData.name.trim()) newErrors.name = "Nama harus diisi"
-    if (!formData.email.trim()) newErrors.email = "Email harus diisi"
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
-      newErrors.email = "Format email tidak valid"
     if (!formData.phone.trim()) newErrors.phone = "Nomor telepon harus diisi"
     if (!formData.service || formData.service === "Pilih Layanan")
       newErrors.service = "Pilih layanan terlebih dahulu"
@@ -69,7 +64,7 @@ export function Booking() {
 
     setIsLoading(true)
     const message = encodeURIComponent(
-      `Halo, saya ingin booking:\n\nNama: ${formData.name}\nEmail: ${formData.email}\nTelepon: ${formData.phone}\nLayanan: ${formData.service}\nTanggal: ${formData.date}\nWaktu: ${formData.time}${
+      `Halo, saya ingin booking:\n\nNama: ${formData.name}\nTelepon: ${formData.phone}\nLayanan: ${formData.service}\nTanggal: ${formData.date}\nWaktu: ${formData.time}${
         formData.notes ? `\nCatatan: ${formData.notes}` : ""
       }`
     )
@@ -78,7 +73,7 @@ export function Booking() {
     setTimeout(() => {
       setSubmitted(true)
       setIsLoading(false)
-      setFormData({ name: "", email: "", phone: "", service: "", date: "", time: "", notes: "" })
+      setFormData({ name: "", phone: "", service: "", date: "", time: "", notes: "" })
       setTimeout(() => setSubmitted(false), 5000)
     }, 500)
   }
@@ -184,26 +179,15 @@ export function Booking() {
               )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name and Email Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <FormField
-                    label="Nama Lengkap"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    error={errors.name}
-                    placeholder="Masukkan nama Anda"
-                  />
-                  <FormField
-                    label="Email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    error={errors.email}
-                    placeholder="email@example.com"
-                  />
-                </div>
+                {/* Name Field */}
+                <FormField
+                  label="Nama Lengkap"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  error={errors.name}
+                  placeholder="Masukkan nama Anda"
+                />
 
                 {/* Phone and Service Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
