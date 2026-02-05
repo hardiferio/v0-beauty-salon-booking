@@ -32,10 +32,10 @@ export function About() {
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-600/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10" ref={sectionRef}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div className="max-w-2xl mx-auto">
           {/* Text Content */}
           <div
-            className={`font-sans order-2 lg:order-1 transition-all duration-1000 ${
+            className={`font-sans transition-all duration-1000 ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
             }`}
           >
@@ -59,59 +59,9 @@ export function About() {
                 Setiap kunjungan ke Sekar Kedaton dirancang untuk menjadi momen kemewahan dan perawatan diri, di mana Anda dapat bersantai, menyegarkan diri, dan menemukan kembali pancaran alami Anda.
               </p>
             </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-8 pt-8 border-t border-border/30">
-              {[
-                { label: "Pengalaman", value: "10+" },
-                { label: "Tim Profesional", value: "20+" },
-                { label: "Pelanggan Puas", value: "5000+" },
-              ].map((stat, index) => (
-                <div
-                  key={index}
-                  className={`group transition-all duration-500 delay-${index * 100} ${
-                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                  }`}
-                >
-                  <p className="text-accent font-bold text-lg sm:text-xl group-hover:scale-110 transition-transform duration-300">
-                    {stat.value}
-                  </p>
-                  <p className="text-muted-foreground text-xs sm:text-sm">{stat.label}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Image */}
-          <div
-            className={`relative order-1 lg:order-2 transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
-            }`}
-          >
-            <div className="relative">
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-amber-600/20 rounded-lg blur-xl -z-10"></div>
 
-              <img
-                src="/elegant-beauty-salon.png"
-                alt="Sekar Kedaton Beauty Salon Interior"
-                className="w-full h-auto shadow-2xl rounded-lg mx-auto px-0 hover:shadow-3xl transition-shadow duration-500 hover:scale-105 transition-transform duration-500"
-              />
-
-              {/* Floating cards overlay */}
-              <div className="absolute bottom-4 left-4 right-4 flex gap-2 pointer-events-none">
-                {["Premium", "Modern", "Nyaman"].map((tag, index) => (
-                  <div
-                    key={index}
-                    className="px-3 py-2 bg-background/80 backdrop-blur-md rounded-full text-xs font-medium text-foreground border border-border/50 animate-fade-in-scale"
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    {tag}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
